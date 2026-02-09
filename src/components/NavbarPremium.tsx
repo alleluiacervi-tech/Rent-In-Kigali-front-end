@@ -36,12 +36,20 @@ export function NavbarPremium({
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'properties', label: 'Browse' },
-    { id: 'rent', label: 'For Rent' },
-    { id: 'sale', label: 'For Sale' },
+    { id: 'properties', label: 'Browse Listings' },
+    { id: 'rent', label: 'Rent' },
+    { id: 'sale', label: 'Buy' },
     { id: 'land', label: 'Land' },
     { id: 'about', label: 'About' },
   ];
+
+  const handlePostProperty = () => {
+    if (isAuthenticated && (userRole === 'admin' || userRole === 'agent')) {
+      onNavigate('admin-add-property');
+      return;
+    }
+    onNavigate('register');
+  };
 
   return (
     <nav 
@@ -69,10 +77,10 @@ export function NavbarPremium({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   currentView === item.id
                     ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/80'
                 }`}
               >
                 {item.label}
@@ -83,24 +91,39 @@ export function NavbarPremium({
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
-            
+
+            <Button
+              variant="ghost"
+              className="text-foreground/70 hover:text-foreground"
+              asChild
+            >
+              <a href="mailto:info@rentinkigali.com">Contact Agent</a>
+            </Button>
+
+            <Button 
+              variant="outline"
+              className="gap-2"
+              onClick={() => onNavigate('properties')}
+            >
+              Browse Listings
+            </Button>
+
+            <Button 
+              onClick={handlePostProperty}
+              className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
+            >
+              <Sparkles className="h-4 w-4" />
+              Post Property
+            </Button>
+
             {!isAuthenticated ? (
-              <>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => onNavigate('login')}
-                  className="text-foreground/70 hover:text-foreground"
-                >
-                  Sign In
-                </Button>
-                <Button 
-                  onClick={() => onNavigate('register')}
-                  className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  Get Started
-                </Button>
-              </>
+              <Button 
+                variant="ghost" 
+                onClick={() => onNavigate('login')}
+                className="text-foreground/70 hover:text-foreground"
+              >
+                Sign In
+              </Button>
             ) : (
               <>
                 {(userRole === 'admin' || userRole === 'agent') && (
@@ -163,6 +186,36 @@ export function NavbarPremium({
               ))}
               
               <div className="border-t border-border/50 my-4"></div>
+
+              <Button 
+                variant="outline"
+                className="justify-start"
+                onClick={() => {
+                  onNavigate('properties');
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Browse Listings
+              </Button>
+
+              <Button 
+                variant="ghost"
+                className="justify-start"
+                asChild
+              >
+                <a href="mailto:info@rentinkigali.com">Contact Agent</a>
+              </Button>
+
+              <Button 
+                className="justify-start gap-2"
+                onClick={() => {
+                  handlePostProperty();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <Sparkles className="h-4 w-4" />
+                Post Property
+              </Button>
               
               {!isAuthenticated ? (
                 <>

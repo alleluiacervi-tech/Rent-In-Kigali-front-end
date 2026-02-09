@@ -1,5 +1,5 @@
 import { Property } from '../types';
-import { Bed, Bath, Maximize, MapPin, Phone, Mail, ArrowLeft, Check, Calendar, Share2, Heart, Video } from 'lucide-react';
+import { Bed, Bath, Maximize, MapPin, Phone, Mail, ArrowLeft, Check, Calendar, Share2, Heart, ShieldCheck, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -44,6 +44,10 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
     toast.success(isFavorite ? 'Removed from favorites' : 'Added to favorites');
   };
 
+  const whatsappLink = property.agent?.phone
+    ? `https://wa.me/${property.agent.phone.replace(/\D/g, '')}`
+    : 'https://wa.me/250785514692';
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -66,7 +70,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
@@ -81,18 +85,22 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                   variant="secondary"
                   className={
                     property.status === 'available' 
-                      ? 'bg-green-500 text-white hover:bg-green-600' 
+                      ? 'bg-emerald-500 text-white hover:bg-emerald-600' 
                       : 'bg-gray-500 text-white'
                   }
                 >
                   {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
                 </Badge>
                 <Badge variant="outline">{property.category.charAt(0).toUpperCase() + property.category.slice(1)}</Badge>
+                <Badge variant="outline" className="gap-1">
+                  <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+                  Verified Listing
+                </Badge>
               </div>
             </div>
 
             {/* Property Details */}
-            <Card className="mb-6">
+            <Card className="mb-6 card-outline">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div>
@@ -111,7 +119,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-muted rounded-lg">
+                <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-muted/70 rounded-2xl">
                   {property.category !== 'land' && (
                     <>
                       <div className="text-center">
@@ -149,7 +157,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                   <div className="grid grid-cols-2 gap-3">
                     {property.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
+                        <Check className="h-4 w-4 text-emerald-500" />
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -185,13 +193,31 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="card-outline">
+              <CardHeader>
+                <CardTitle>Location & Neighborhood</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="rounded-2xl border border-border/60 bg-muted/60 p-6 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-2">Map Preview</p>
+                    <p className="text-lg font-medium">{property.location}, {property.district}</p>
+                    <p className="text-sm text-muted-foreground">Safe, walkable, and close to top schools and dining.</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Contact Agent */}
             {property.agent && (
-              <Card className="mb-6 sticky top-20">
+              <Card className="mb-6 sticky top-20 card-outline">
                 <CardHeader>
                   <CardTitle>Contact Agent</CardTitle>
                 </CardHeader>
@@ -203,6 +229,10 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                     <div>
                       <p>{property.agent.name}</p>
                       <p className="text-sm text-muted-foreground">Property Agent</p>
+                      <div className="inline-flex items-center gap-1 mt-2 text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
+                        <ShieldCheck className="h-3 w-3" />
+                        Verified Professional
+                      </div>
                     </div>
                   </div>
 
@@ -231,9 +261,15 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                       </a>
                     </Button>
                     <Button variant="outline" className="w-full" asChild>
+                      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                        <MessageCircle className="h-4 w-4 mr-2" />
+                        WhatsApp
+                      </a>
+                    </Button>
+                    <Button variant="outline" className="w-full" asChild>
                       <a href={`mailto:${property.agent.email}`}>
                         <Mail className="h-4 w-4 mr-2" />
-                        Send Message
+                        Email Agent
                       </a>
                     </Button>
                     <Button variant="outline" className="w-full" onClick={() => setScheduleDialogOpen(true)}>
