@@ -1,0 +1,401 @@
+/* Responsive refinements for customer and admin surfaces */
+
+html,
+body,
+#root {
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.home-featured-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.premium-nav-row {
+  min-height: 5rem;
+}
+
+.premium-mobile-menu {
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+.hero-premium-title {
+  font-size: clamp(2.25rem, 7.5vw, 4.5rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.hero-premium-subtitle {
+  font-size: clamp(1rem, 2.6vw, 1.5rem);
+}
+
+.hero-search-shell {
+  padding: 0.875rem;
+}
+
+.hero-search-grid {
+  row-gap: 0.75rem;
+}
+
+.hero-popular-links {
+  row-gap: 0.75rem;
+}
+
+.featured-carousel {
+  height: clamp(20rem, 62vh, 28rem);
+}
+
+.featured-carousel-specs {
+  flex-wrap: wrap;
+}
+
+.featured-carousel-cta-row {
+  align-items: flex-end;
+}
+
+.featured-carousel-view-btn {
+  margin-left: auto;
+}
+
+.featured-carousel-nav {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .featured-carousel-nav {
+    opacity: 0;
+  }
+
+  .featured-carousel:hover .featured-carousel-nav {
+    opacity: 1;
+  }
+}
+
+.property-list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.property-card-premium {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.property-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.property-card-specs {
+  gap: 0.625rem 1rem;
+  flex-wrap: wrap;
+}
+
+.property-card-agent {
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.property-card-agent-info {
+  min-width: 0;
+}
+
+.property-card-view-btn {
+  white-space: nowrap;
+}
+
+.property-detail-header-row {
+  gap: 1rem;
+}
+
+.property-detail-title-row {
+  gap: 1rem;
+}
+
+.image-gallery-main {
+  height: min(60vh, 31.25rem);
+}
+
+.image-gallery-nav-button {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .image-gallery-nav-button {
+    opacity: 0;
+  }
+
+  .image-gallery-main:hover .image-gallery-nav-button {
+    opacity: 1;
+  }
+}
+
+.about-tagline-item {
+  gap: 0.75rem;
+}
+
+.footer-contact-item {
+  align-items: flex-start;
+}
+
+.footer-contact-item span,
+.footer-contact-item a {
+  overflow-wrap: anywhere;
+}
+
+.footer-bottom-row {
+  gap: 1rem;
+}
+
+.footer-legal-links {
+  row-gap: 0.5rem;
+}
+
+.whatsapp-chat-root {
+  inset: auto 1rem 1rem auto;
+}
+
+.whatsapp-chat-panel {
+  width: min(16rem, calc(100vw - 1.5rem));
+}
+
+.property-filters-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.admin-header-row {
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.admin-management-header {
+  gap: 1rem;
+  align-items: center;
+}
+
+.admin-table-scroll {
+  overflow-x: auto;
+}
+
+.admin-table-scroll table {
+  min-width: 52rem;
+}
+
+.admin-inline-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .premium-nav-row {
+    min-height: 4.5rem;
+  }
+
+  .premium-mobile-menu {
+    max-height: calc(100vh - 4.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-featured-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .home-featured-cta {
+    width: 100%;
+  }
+
+  .hero-premium-title br,
+  .hero-premium-subtitle br {
+    display: none;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .hero-popular-links {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .featured-carousel-content {
+    padding: 1rem;
+  }
+
+  .featured-carousel-cta-row {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .featured-carousel-view-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .featured-carousel-dots {
+    right: auto;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .property-list-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .property-list-toolbar-controls {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .property-list-sort-trigger {
+    width: 100%;
+  }
+
+  .property-card-actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  .property-card-agent {
+    align-items: stretch;
+  }
+
+  .property-card-view-btn {
+    width: 100%;
+  }
+
+  .property-detail-header-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .property-detail-header-actions {
+    justify-content: flex-end;
+  }
+
+  .property-detail-title-row {
+    flex-direction: column;
+  }
+
+  .property-detail-price {
+    text-align: left;
+  }
+
+  .property-detail-spec-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .property-detail-features-grid,
+  .property-detail-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-tagline-item {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .footer-social-wrap {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal-links {
+    width: 100%;
+    justify-content: center;
+    gap: 0.75rem 1rem;
+  }
+
+  .property-filters-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-header-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-header-cta {
+    width: 100%;
+  }
+
+  .admin-management-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-search-wrap {
+    width: 100%;
+  }
+
+  .admin-inline-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-form-actions > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-search-shell {
+    padding: 0.75rem;
+  }
+
+  .featured-carousel {
+    height: 22rem;
+  }
+
+  .image-gallery-main {
+    height: 20rem;
+  }
+
+  .whatsapp-chat-root {
+    inset: auto 0.75rem 0.75rem auto;
+  }
+
+  .whatsapp-chat-panel {
+    width: min(16rem, calc(100vw - 1rem));
+  }
+
+  .whatsapp-chat-tooltip {
+    display: none;
+  }
+
+  .property-detail-spec-grid {
+    grid-template-columns: 1fr;
+  }
+}
