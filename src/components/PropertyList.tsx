@@ -63,7 +63,7 @@ export function PropertyList({ properties, title, onViewDetails, showFilters = t
         <div className="mb-8">
           <h1 className="mb-2">{title}</h1>
           <p className="text-muted-foreground">
-            {filteredProperties.length} {filteredProperties.length === 1 ? 'property' : 'properties'} found
+            {filteredProperties.length} {filteredProperties.length === 1 ? 'property' : 'properties'} matched your criteria
           </p>
         </div>
 

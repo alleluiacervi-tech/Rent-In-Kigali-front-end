@@ -33,7 +33,9 @@ export default function App() {
     query: '',
     type: '',
     category: '',
-    district: ''
+    district: '',
+    minPrice: 0,
+    maxPrice: 5000000
   });
 
   // Show splash screen for 3 seconds on initial load
@@ -124,7 +126,14 @@ export default function App() {
     handleNavigate('property-detail');
   };
 
-  const handleSearch = (filters: { query: string; type: string; category: string; district: string }) => {
+  const handleSearch = (filters: { 
+    query: string; 
+    type: string; 
+    category: string; 
+    district: string;
+    minPrice: number;
+    maxPrice: number;
+  }) => {
     setSearchFilters(filters);
   };
 
@@ -182,8 +191,9 @@ export default function App() {
       const matchesType = !searchFilters.type || searchFilters.type === 'all' || property.type === searchFilters.type;
       const matchesCategory = !searchFilters.category || searchFilters.category === 'all' || property.category === searchFilters.category;
       const matchesDistrict = !searchFilters.district || searchFilters.district === 'all' || property.district === searchFilters.district;
+      const matchesPrice = property.price >= searchFilters.minPrice && property.price <= searchFilters.maxPrice;
       
-      return matchesQuery && matchesType && matchesCategory && matchesDistrict;
+      return matchesQuery && matchesType && matchesCategory && matchesDistrict && matchesPrice;
     });
   };
 
