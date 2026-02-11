@@ -37,8 +37,8 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
     onSearch({
       query: searchQuery,
       type: propertyType,
-      category: category,
-      district: district,
+      category,
+      district,
       minPrice: range.min,
       maxPrice: range.max
     });
@@ -47,10 +47,12 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
 
   return (
     <div className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-background/90 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background/90 z-10" />
+        <div className="absolute inset-0 hero-grid z-10" />
+        <div className="absolute inset-0 hero-radial z-10" />
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80"
           alt="Premium modern home"
@@ -61,30 +63,37 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-5xl mx-auto text-center animate-slide-up">
+
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-white/70 mb-5 shadow-sm">
             <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">Trusted real estate platform in Kigali</span>
+            <span className="text-sm font-medium text-foreground">
+              Rwanda's trusted real estate concierge
+            </span>
           </div>
 
-          {/* Hero Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 leading-tight tracking-tight text-white drop-shadow-sm">
-            Find your next home
+          {/* Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight tracking-tight text-white">
+            Own the next chapter
             <br />
-            <span className="text-white">in Kigali</span>
+            <span className="text-gradient">
+              in Kigali's finest addresses
+            </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base md:text-lg text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Browse verified rentals, homes for sale, and land listings with clear pricing,
-            trusted agents, and fast search.
+          <p className="text-lg md:text-xl text-white/85 mb-10 max-w-3xl mx-auto leading-relaxed">
+            Curated homes, verified listings, and an elevated buying and renting experience.
+            Find a place that feels secure, inspiring, and unmistakably yours.
           </p>
 
-          {/* Advanced Search Bar */}
-          <div className="bg-white/95 border border-white shadow-xl rounded-2xl p-4 md:p-5 max-w-6xl mx-auto">
+          {/* Search Card */}
+          <div className="bg-white/95 border border-white shadow-xl rounded-2xl p-4 md:p-6 max-w-6xl mx-auto backdrop-blur-sm">
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
-              {/* Location Search */}
-              <div className="lg:col-span-3 relative input-glow">
+
+              {/* Location */}
+              <div className="lg:col-span-4 relative input-glow">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
                 <Input
                   type="text"
@@ -97,7 +106,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
               </div>
 
               {/* Property Type */}
-              <div className="lg:col-span-2 input-glow">
+              <div className="lg:col-span-2">
                 <Select value={propertyType} onValueChange={setPropertyType}>
                   <SelectTrigger className="h-12 border border-border/60 bg-white focus:ring-2 focus:ring-primary">
                     <SelectValue placeholder="Rent or Buy" />
@@ -111,7 +120,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
               </div>
 
               {/* Category */}
-              <div className="lg:col-span-2 input-glow">
+              <div className="lg:col-span-2">
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger className="h-12 border border-border/60 bg-white focus:ring-2 focus:ring-primary">
                     <SelectValue placeholder="Property Type" />
@@ -128,7 +137,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
               </div>
 
               {/* Price Range */}
-              <div className="lg:col-span-2 input-glow">
+              <div className="lg:col-span-2">
                 <Select value={priceRange} onValueChange={setPriceRange}>
                   <SelectTrigger className="h-12 border border-border/60 bg-white focus:ring-2 focus:ring-primary">
                     <SelectValue placeholder="Price range" />
@@ -144,7 +153,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
               </div>
 
               {/* District */}
-              <div className="lg:col-span-2 input-glow">
+              <div className="lg:col-span-1">
                 <Select value={district} onValueChange={setDistrict}>
                   <SelectTrigger className="h-12 border border-border/60 bg-white focus:ring-2 focus:ring-primary">
                     <SelectValue placeholder="District" />
@@ -165,7 +174,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
                   className="w-full h-12 gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
                 >
                   <Search className="h-5 w-5" />
-                  <span className="hidden md:inline">Search</span>
+                  <span className="hidden md:inline">Search Listings</span>
                 </Button>
               </div>
             </div>
@@ -186,49 +195,10 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
               </div>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-7">
-            <span className="text-sm text-white/70">Popular searches:</span>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => {
-                setCategory('apartment');
-                setPropertyType('rent');
-                handleSearch();
-              }}
-              className="rounded-full border-white/40 bg-black/20 text-white/90 hover:bg-white hover:text-foreground transition-all"
-            >
-              Apartments for Rent
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => {
-                setCategory('villa');
-                setPropertyType('sale');
-                handleSearch();
-              }}
-              className="rounded-full border-white/40 bg-black/20 text-white/90 hover:bg-white hover:text-foreground transition-all"
-            >
-              Villas for Sale
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => {
-                onNavigate('land');
-              }}
-              className="rounded-full border-white/40 bg-black/20 text-white/90 hover:bg-white hover:text-foreground transition-all"
-            >
-              Land Opportunities
-            </Button>
-          </div>
         </div>
       </div>
 
-      {/* Bottom Gradient Fade */}
+      {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-20" />
     </div>
   );

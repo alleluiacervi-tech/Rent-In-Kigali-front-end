@@ -92,20 +92,20 @@ export function NavbarPremium({
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
 
+            <Button
+              variant="ghost"
+              className="text-foreground/70 hover:text-foreground"
+              asChild
+            >
+              <a href="mailto:info@rentinkigali.com">Contact Agent</a>
+            </Button>
+
             <Button 
               variant="outline"
               className="gap-2"
               onClick={() => onNavigate('properties')}
             >
               Browse Listings
-            </Button>
-
-            <Button
-              variant="ghost"
-              className="text-foreground/70 hover:text-foreground"
-              asChild
-            >
-              <a href="mailto:info@rentinkigali.com">Contact</a>
             </Button>
 
             <Button 
@@ -203,7 +203,7 @@ export function NavbarPremium({
                 className="justify-start"
                 asChild
               >
-                <a href="mailto:info@rentinkigali.com">Contact</a>
+                <a href="mailto:info@rentinkigali.com">Contact Agent</a>
               </Button>
 
               <Button 

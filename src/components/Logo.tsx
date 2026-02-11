@@ -65,7 +65,8 @@ export function Logo({ variant = 'default', size = 'md', className = '' }: LogoP
           Rent in Kigali
         </span>
         <span className={`text-[0.55em] tracking-[0.25em] uppercase ${accent} mt-1`}>
-          Real Estate
+          Premium Realty
+
         </span>
       </div>
     </div>
