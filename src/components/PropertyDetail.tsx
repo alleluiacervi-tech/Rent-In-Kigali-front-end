@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Separator } from './ui/separator';
 import { ImageGallery } from './ImageGallery';
 import { ScheduleViewingDialog } from './ScheduleViewingDialog';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { useState } from 'react';
 
 interface PropertyDetailProps {

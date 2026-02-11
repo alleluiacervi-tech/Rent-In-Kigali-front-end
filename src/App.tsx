@@ -8,7 +8,7 @@ import { WhatsAppChat } from './components/WhatsAppChat';
 import { FeaturedCarousel } from './components/FeaturedCarousel';
 import { mockProperties, dashboardStats } from './lib/mock-data';
 import { Property, User } from './types';
-import { toast, Toaster } from 'sonner@2.0.3';
+import { toast, Toaster } from 'sonner';
 import { Building2, Home, TrendingUp, Sparkles } from 'lucide-react';
 import { Card, CardContent } from './components/ui/card';
 import { Button } from './components/ui/button';
