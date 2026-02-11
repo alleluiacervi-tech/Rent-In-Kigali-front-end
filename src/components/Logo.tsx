@@ -32,7 +32,7 @@ export function Logo({ variant = 'default', size = 'md', className = '' }: LogoP
   const { primary, accent, text } = colors[variant];
 
   return (
-    <div className={`flex items-center gap-2.5 ${sizeClasses[size]} ${className}`}>
+    <div className={`flex items-center gap-3 ${sizeClasses[size]} ${className}`}>
       {/* Modern architectural logo icon */}
       <svg 
         viewBox="0 0 40 40" 
@@ -40,34 +40,32 @@ export function Logo({ variant = 'default', size = 'md', className = '' }: LogoP
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Building outline with door */}
+        {/* Framed monogram with architectural geometry */}
+        <rect x="3.5" y="3.5" width="33" height="33" rx="8" className={primary} stroke="currentColor" strokeWidth="2" />
         <path
-          d="M8 38V16L20 8L32 16V38H24V28C24 26.8954 23.1046 26 22 26H18C16.8954 26 16 26.8954 16 28V38H8Z"
-          className={primary}
-          fill="currentColor"
-        />
-        {/* Window accents */}
-        <rect x="11" y="20" width="4" height="4" rx="0.5" className={accent} fill="currentColor" />
-        <rect x="18" y="20" width="4" height="4" rx="0.5" className={accent} fill="currentColor" />
-        <rect x="25" y="20" width="4" height="4" rx="0.5" className={accent} fill="currentColor" />
-        {/* Roof accent line */}
-        <path
-          d="M4 16L20 6L36 16"
+          d="M12 28V14.5L20 10L28 14.5V28"
           className={accent}
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
+        />
+        <path
+          d="M16 28V20.5C16 19.4 16.9 18.5 18 18.5H22C23.1 18.5 24 19.4 24 20.5V28"
+          className={accent}
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
         />
       </svg>
       
       {/* Logo text */}
       <div className="flex flex-col leading-none">
-        <span className={`font-semibold tracking-tight ${text} text-[1.1em]`}>
-          RENT IN KIGALI
+        <span className={`font-semibold tracking-tight ${text} text-[1.05em]`}>
+          Rent in Kigali
         </span>
-        <span className={`text-[0.5em] tracking-wider uppercase ${accent} mt-0.5`}>
-          Premium Real Estate
+        <span className={`text-[0.55em] tracking-[0.25em] uppercase ${accent} mt-1`}>
+          Real Estate
         </span>
       </div>
     </div>

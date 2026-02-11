@@ -11,7 +11,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-muted border-t border-border">
+    <footer className="bg-muted/60 border-t border-border">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
@@ -19,8 +19,8 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           <div className="lg:col-span-2">
             <Logo variant={isDark ? 'default' : 'default'} size="md" className="mb-6" />
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
-              Rwanda's premier real estate platform connecting you with your dream properties. 
-              Professional service, trusted expertise, and a commitment to excellence.
+              Rent in Kigali is a premium real estate platform curating exceptional homes, 
+              verified listings, and concierge-level guidance for every buyer and renter.
             </p>
             
             {/* Contact Info */}
@@ -61,7 +61,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           <div>
             <h4 className="font-semibold mb-6">Explore</h4>
             <ul className="space-y-3">
-              {['Properties', 'For Rent', 'For Sale', 'Land', 'About Us'].map((link) => (
+              {['Browse Listings', 'For Rent', 'For Sale', 'Land', 'About Us'].map((link) => (
                 <li key={link}>
                   <a 
                     href="#" 
@@ -78,7 +78,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           <div>
             <h4 className="font-semibold mb-6">Resources</h4>
             <ul className="space-y-3">
-              {['Property Guides', 'Market Insights', 'Investment Tips', 'FAQs', 'Contact Support'].map((link) => (
+              {['Market Insights', 'Neighborhood Guides', 'Investment Tips', 'FAQs', 'Support'].map((link) => (
                 <li key={link}>
                   <a 
                     href="#" 
@@ -95,12 +95,12 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           <div>
             <h4 className="font-semibold mb-6">Stay Updated</h4>
             <p className="text-sm text-muted-foreground mb-4">
-              Get the latest properties and market insights delivered to your inbox.
+              Get new listings, pricing insights, and Kigali market updates.
             </p>
             <div className="space-y-3">
               <Input 
                 type="email" 
-                placeholder="Your email" 
+                placeholder="Email address" 
                 className="bg-background"
               />
               <Button className="w-full">
@@ -138,12 +138,12 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
             </div>
 
             {/* Legal Links */}
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <span>© {currentYear} Rent in Kigali. All rights reserved.</span>
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
-            </div>
+          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+            <span>© {currentYear} Rent in Kigali. All rights reserved.</span>
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
+          </div>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
       <div className="border-t border-border bg-primary/5">
         <div className="container mx-auto px-4 py-4">
           <p className="text-center text-sm text-muted-foreground">
-            <span className="font-medium text-primary">Real Estate Service</span> - Getting real about real estate - We are a professional real estate agency in Rwanda - Just here for you.
+            <span className="font-medium text-primary">Trust. Discretion. Excellence.</span> Kigali’s premium real estate platform for refined living.
           </p>
         </div>
       </div>
