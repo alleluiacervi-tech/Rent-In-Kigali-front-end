@@ -1,25 +1,83 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { NavbarPremium } from './components/NavbarPremium';
 import { HeroPremium } from './components/HeroPremium';
 import { FooterPremium } from './components/FooterPremium';
-import { PropertyList } from './components/PropertyList';
-import { PropertyDetail } from './components/PropertyDetail';
 import { PropertyCardPremium } from './components/PropertyCardPremium';
-import { AboutPage } from './components/AboutPage';
-import { LoginPage, RegisterPage } from './components/AuthPages';
-import { AdminDashboard } from './components/AdminDashboard';
-import { AdminPropertyManagement } from './components/AdminPropertyManagement';
-import { AdminAddProperty } from './components/AdminAddProperty';
 import { SplashScreen } from './components/SplashScreen';
 import { WhatsAppChat } from './components/WhatsAppChat';
 import { FeaturedCarousel } from './components/FeaturedCarousel';
-import { LandSalesPage } from './components/LandSalesPage';
 import { mockProperties, dashboardStats } from './lib/mock-data';
 import { Property, User } from './types';
 import { toast, Toaster } from 'sonner@2.0.3';
 import { Building2, Home, TrendingUp, Sparkles } from 'lucide-react';
 import { Card, CardContent } from './components/ui/card';
 import { Button } from './components/ui/button';
+
+const PropertyList = lazy(() =>
+  import('./components/PropertyList').then((module) => ({
+    default: module.PropertyList
+  }))
+);
+
+const PropertyDetail = lazy(() =>
+  import('./components/PropertyDetail').then((module) => ({
+    default: module.PropertyDetail
+  }))
+);
+
+const AboutPage = lazy(() =>
+  import('./components/AboutPage').then((module) => ({
+    default: module.AboutPage
+  }))
+);
+
+const LoginPage = lazy(() =>
+  import('./components/AuthPages').then((module) => ({
+    default: module.LoginPage
+  }))
+);
+
+const RegisterPage = lazy(() =>
+  import('./components/AuthPages').then((module) => ({
+    default: module.RegisterPage
+  }))
+);
+
+const AdminDashboard = lazy(() =>
+  import('./components/AdminDashboard').then((module) => ({
+    default: module.AdminDashboard
+  }))
+);
+
+const AdminPropertyManagement = lazy(() =>
+  import('./components/AdminPropertyManagement').then((module) => ({
+    default: module.AdminPropertyManagement
+  }))
+);
+
+const AdminAddProperty = lazy(() =>
+  import('./components/AdminAddProperty').then((module) => ({
+    default: module.AdminAddProperty
+  }))
+);
+
+const LandSalesPage = lazy(() =>
+  import('./components/LandSalesPage').then((module) => ({
+    default: module.LandSalesPage
+  }))
+);
+
+function PageLoader() {
+  return (
+    <div className="container mx-auto px-4 py-16">
+      <div className="animate-pulse space-y-4">
+        <div className="h-8 w-48 rounded bg-muted" />
+        <div className="h-4 w-full rounded bg-muted" />
+        <div className="h-4 w-3/4 rounded bg-muted" />
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -450,7 +508,9 @@ export default function App() {
       )}
 
       <main className="flex-1">
-        {renderView()}
+        <Suspense fallback={<PageLoader />}>
+          {renderView()}
+        </Suspense>
       </main>
 
       {currentView !== 'login' && currentView !== 'register' && <FooterPremium />}
