@@ -66,6 +66,7 @@ export function Logo({ variant = 'default', size = 'md', className = '' }: LogoP
         </span>
         <span className={`text-[0.55em] tracking-[0.25em] uppercase ${accent} mt-1`}>
           Premium Realty
+
         </span>
       </div>
     </div>
