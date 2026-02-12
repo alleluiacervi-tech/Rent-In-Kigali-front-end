@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, LogOut, LayoutDashboard, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X, LogOut, LayoutDashboard } from 'lucide-react';
 import { Button } from './ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import { Logo } from './Logo';
@@ -24,15 +24,6 @@ export function NavbarPremium({
   onToggleTheme 
 }: NavbarPremiumProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -43,27 +34,10 @@ export function NavbarPremium({
     { id: 'about', label: 'About' },
   ];
 
-  const handlePostProperty = () => {
-    if (isAuthenticated && (userRole === 'admin' || userRole === 'agent')) {
-      onNavigate('admin-add-property');
-      return;
-    }
-    onNavigate('register');
-  };
-
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? isDark 
-            ? 'glass-dark border-b border-white/10' 
-            : 'glass border-b border-black/5 shadow-sm'
-          : 'bg-transparent'
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <button 
             onClick={() => onNavigate('home')}
             className="hover:opacity-80 transition-opacity"
@@ -100,32 +74,22 @@ export function NavbarPremium({
               <a href="mailto:info@rentinkigali.com">Contact Agent</a>
             </Button>
 
-            <Button 
-              variant="outline"
-              className="gap-2"
-              onClick={() => onNavigate('properties')}
-            >
-              Browse Listings
-            </Button>
-
-            <Button 
-              onClick={handlePostProperty}
-              className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
-            >
-              <Sparkles className="h-4 w-4" />
-              Post Property
-            </Button>
-
             {!isAuthenticated ? (
-              <Button 
-                variant="ghost" 
-                onClick={() => onNavigate('login')}
-                className="text-foreground/70 hover:text-foreground"
-              >
-                Sign In
-              </Button>
+              <>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => onNavigate('login')}
+                  className="text-foreground/70 hover:text-foreground"
+                >
+                  Sign In
+                </Button>
+                <Button onClick={() => onNavigate('register')}>Create Account</Button>
+              </>
             ) : (
               <>
+                {(userRole === 'admin' || userRole === 'agent') && (
+                  <Button onClick={() => onNavigate('admin-add-property')}>Add Listing</Button>
+                )}
                 {(userRole === 'admin' || userRole === 'agent') && (
                   <Button 
                     variant="outline" 
@@ -206,17 +170,6 @@ export function NavbarPremium({
                 <a href="mailto:info@rentinkigali.com">Contact Agent</a>
               </Button>
 
-              <Button 
-                className="justify-start gap-2"
-                onClick={() => {
-                  handlePostProperty();
-                  setMobileMenuOpen(false);
-                }}
-              >
-                <Sparkles className="h-4 w-4" />
-                Post Property
-              </Button>
-              
               {!isAuthenticated ? (
                 <>
                   <Button 
@@ -236,12 +189,22 @@ export function NavbarPremium({
                       setMobileMenuOpen(false);
                     }}
                   >
-                    <Sparkles className="h-4 w-4" />
-                    Get Started
+                    Create Account
                   </Button>
                 </>
               ) : (
                 <>
+                  {(userRole === 'admin' || userRole === 'agent') && (
+                    <Button
+                      className="justify-start"
+                      onClick={() => {
+                        onNavigate('admin-add-property');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      Add Listing
+                    </Button>
+                  )}
                   {(userRole === 'admin' || userRole === 'agent') && (
                     <Button 
                       variant="outline" 

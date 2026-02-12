@@ -3,13 +3,10 @@ import { NavbarPremium } from './components/NavbarPremium';
 import { HeroPremium } from './components/HeroPremium';
 import { FooterPremium } from './components/FooterPremium';
 import { PropertyCardPremium } from './components/PropertyCardPremium';
-import { SplashScreen } from './components/SplashScreen';
-import { WhatsAppChat } from './components/WhatsAppChat';
-import { FeaturedCarousel } from './components/FeaturedCarousel';
 import { mockProperties, dashboardStats } from './lib/mock-data';
 import { Property, User } from './types';
 import { toast, Toaster } from 'sonner';
-import { Building2, Home, TrendingUp, Sparkles } from 'lucide-react';
+import { Building2, Home, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from './components/ui/card';
 import { Button } from './components/ui/button';
 
@@ -80,7 +77,6 @@ function PageLoader() {
 }
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
   const [currentView, setCurrentView] = useState('home');
   const [properties, setProperties] = useState<Property[]>(mockProperties);
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
@@ -95,15 +91,6 @@ export default function App() {
     minPrice: 0,
     maxPrice: 5000000
   });
-
-  // Show splash screen for 3 seconds on initial load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   // Load dark mode preference from localStorage
   useEffect(() => {
@@ -263,18 +250,6 @@ export default function App() {
         return (
           <>
             <HeroPremium onSearch={handleSearch} onNavigate={handleNavigate} />
-            
-            {/* Featured Carousel */}
-            <div className="container mx-auto px-4 py-16">
-              <div className="mb-8">
-                <h2 className="mb-2">Premium Properties</h2>
-                <p className="text-muted-foreground">Auto-rotating showcase of our finest properties</p>
-              </div>
-              <FeaturedCarousel 
-                properties={properties.filter(p => p.status === 'available').slice(0, 5)} 
-                onViewDetails={handleViewProperty}
-              />
-            </div>
 
             {/* Featured Properties */}
             <div className="container mx-auto px-4 py-16">
@@ -349,41 +324,6 @@ export default function App() {
                     </CardContent>
                   </Card>
                 </div>
-              </div>
-            </div>
-
-            {/* Why Choose Us */}
-            <div className="container mx-auto px-4 py-16">
-              <div className="text-center mb-12">
-                <h2 className="mb-2">Why Choose Rent in Kigali</h2>
-                <p className="text-muted-foreground">Your trusted partner in real estate</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <Card>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-2">250+</div>
-                    <p className="text-muted-foreground">Properties</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-2">150+</div>
-                    <p className="text-muted-foreground">Happy Clients</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-2">10+</div>
-                    <p className="text-muted-foreground">Years Experience</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-2">24/7</div>
-                    <p className="text-muted-foreground">Support</p>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </>
@@ -486,11 +426,6 @@ export default function App() {
     }
   };
 
-  // Show splash screen first
-  if (showSplash) {
-    return <SplashScreen />;
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
       <Toaster position="top-right" richColors />
@@ -514,9 +449,6 @@ export default function App() {
       </main>
 
       {currentView !== 'login' && currentView !== 'register' && <FooterPremium />}
-      
-      {/* WhatsApp Chat Widget - visible on all pages except splash */}
-      <WhatsAppChat />
     </div>
   );
 }

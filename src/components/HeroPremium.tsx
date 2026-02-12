@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, MapPin, Sparkles } from 'lucide-react';
+import { Search, MapPin } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
@@ -20,7 +20,6 @@ interface HeroPremiumProps {
 export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [propertyType, setPropertyType] = useState('all');
-  const [category, setCategory] = useState('all');
   const [district, setDistrict] = useState('all');
   const [priceRange, setPriceRange] = useState('any');
 
@@ -37,7 +36,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
     onSearch({
       query: searchQuery,
       type: propertyType,
-      category: category,
+      category: 'all',
       district: district,
       minPrice: range.min,
       maxPrice: range.max
@@ -46,62 +45,44 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
   };
 
   return (
-    <div className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/70 to-background z-10" />
-        <div className="absolute inset-0 hero-grid z-10" />
-        <div className="absolute inset-0 hero-radial z-10" />
+    <div className="relative min-h-[76vh] flex items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20 z-10" />
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80"
-          alt="Premium modern home"
+          alt="Modern home in Kigali"
           className="w-full h-full object-cover"
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 pt-24 pb-16">
-        <div className="max-w-4xl mx-auto text-center animate-slide-up">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-white/60 mb-6 backdrop-blur-sm shadow-sm">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">Rwanda's trusted real estate concierge</span>
-          </div>
-
-          {/* Hero Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight tracking-tight font-display">
-            Own the next chapter
-            <br />
-            <span className="text-gradient">in Kigali's finest addresses</span>
+      <div className="relative z-20 container mx-auto px-4 py-24">
+        <div className="max-w-4xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-5 leading-tight text-white">
+            Find your next home in Kigali
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-            Curated homes, verified listings, and an elevated buying and renting experience. 
-            Find a place that feels secure, inspiring, and unmistakably yours.
+          <p className="text-base md:text-lg text-white/85 mb-8 max-w-2xl">
+            Browse verified listings for rent, sale, and land in one focused search.
           </p>
 
-          {/* Advanced Search Bar */}
-          <div className="bg-card/95 border border-white/60 shadow-2xl rounded-3xl p-4 md:p-6 max-w-6xl mx-auto backdrop-blur-xl premium-shadow">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
-              {/* Location Search */}
-              <div className="lg:col-span-4 relative input-glow">
+          <div className="bg-card/95 border border-white/30 shadow-lg rounded-2xl p-4 md:p-5 max-w-5xl backdrop-blur">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+              <div className="lg:col-span-2 relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
                 <Input
                   type="text"
                   placeholder="Location or property name..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-11 h-12 border-0 bg-muted/60 focus-visible:ring-2 focus-visible:ring-primary transition-all"
+                  className="pl-11 h-12 bg-muted/70"
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
 
-              {/* Property Type */}
-              <div className="lg:col-span-2 input-glow">
+              <div>
                 <Select value={propertyType} onValueChange={setPropertyType}>
-                  <SelectTrigger className="h-12 border-0 bg-muted/60 focus:ring-2 focus:ring-primary">
-                    <SelectValue placeholder="Rent or Buy" />
+                  <SelectTrigger className="h-12 bg-muted/70">
+                    <SelectValue placeholder="Listing type" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Rent or Buy</SelectItem>
@@ -111,27 +92,9 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
                 </Select>
               </div>
 
-              {/* Category */}
-              <div className="lg:col-span-2 input-glow">
-                <Select value={category} onValueChange={setCategory}>
-                  <SelectTrigger className="h-12 border-0 bg-muted/60 focus:ring-2 focus:ring-primary">
-                    <SelectValue placeholder="Property Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Types</SelectItem>
-                    <SelectItem value="house">House</SelectItem>
-                    <SelectItem value="apartment">Apartment</SelectItem>
-                    <SelectItem value="villa">Villa</SelectItem>
-                    <SelectItem value="studio">Studio</SelectItem>
-                    <SelectItem value="land">Land</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Price Range */}
-              <div className="lg:col-span-2 input-glow">
+              <div>
                 <Select value={priceRange} onValueChange={setPriceRange}>
-                  <SelectTrigger className="h-12 border-0 bg-muted/60 focus:ring-2 focus:ring-primary">
+                  <SelectTrigger className="h-12 bg-muted/70">
                     <SelectValue placeholder="Price range" />
                   </SelectTrigger>
                   <SelectContent>
@@ -144,10 +107,9 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
                 </Select>
               </div>
 
-              {/* District */}
-              <div className="lg:col-span-2 input-glow">
+              <div>
                 <Select value={district} onValueChange={setDistrict}>
-                  <SelectTrigger className="h-12 border-0 bg-muted/60 focus:ring-2 focus:ring-primary">
+                  <SelectTrigger className="h-12 bg-muted/70">
                     <SelectValue placeholder="District" />
                   </SelectTrigger>
                   <SelectContent>
@@ -159,78 +121,16 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
                 </Select>
               </div>
 
-              {/* Search Button */}
-              <div className="lg:col-span-12 md:col-span-2">
-                <Button 
-                  onClick={handleSearch}
-                  className="w-full h-12 gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
-                >
+              <div>
+                <Button onClick={handleSearch} className="w-full h-12 gap-2">
                   <Search className="h-5 w-5" />
-                  <span className="hidden md:inline">Search Listings</span>
+                  <span>Search</span>
                 </Button>
               </div>
             </div>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-border/60">
-              <div className="text-center">
-                <div className="text-2xl font-semibold text-foreground mb-1">250+</div>
-                <div className="text-sm text-muted-foreground">Verified listings</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-semibold text-foreground mb-1">150+</div>
-                <div className="text-sm text-muted-foreground">Happy clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-semibold text-foreground mb-1">10+</div>
-                <div className="text-sm text-muted-foreground">Years in Kigali</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
-            <span className="text-sm text-muted-foreground">Popular:</span>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => {
-                setCategory('apartment');
-                setPropertyType('rent');
-                handleSearch();
-              }}
-              className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              Apartments for Rent
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => {
-                setCategory('villa');
-                setPropertyType('sale');
-                handleSearch();
-              }}
-              className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              Villas for Sale
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => {
-                onNavigate('land');
-              }}
-              className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              Land Opportunities
-            </Button>
           </div>
         </div>
       </div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-20" />
     </div>
   );
 }
