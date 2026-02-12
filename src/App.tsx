@@ -6,8 +6,6 @@ import { PropertyCardPremium } from './components/PropertyCardPremium';
 import { mockProperties, dashboardStats } from './lib/mock-data';
 import { Property, User } from './types';
 import { toast, Toaster } from 'sonner';
-import { Building2, Home, TrendingUp } from 'lucide-react';
-import { Card, CardContent } from './components/ui/card';
 import { Button } from './components/ui/button';
 
 const PropertyList = lazy(() =>
@@ -256,7 +254,7 @@ export default function App() {
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <h2 className="mb-2">Featured Properties</h2>
-                  <p className="text-muted-foreground">Discover our hand-picked selection of premium properties</p>
+                  <p className="text-muted-foreground">Verified listings ready for viewing</p>
                 </div>
                 <Button onClick={() => handleNavigate('properties')} variant="outline">
                   View All Properties
@@ -264,66 +262,13 @@ export default function App() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {properties.slice(0, 6).map(property => (
+                {properties.slice(0, 4).map(property => (
                   <PropertyCardPremium
                     key={property.id}
                     property={property}
                     onViewDetails={handleViewProperty}
                   />
                 ))}
-              </div>
-            </div>
-
-            {/* Property Types */}
-            <div className="bg-muted py-16">
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                  <h2 className="mb-2">Browse by Category</h2>
-                  <p className="text-muted-foreground">Find the perfect property type for your needs</p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
-                    setSearchFilters({ ...searchFilters, type: 'rent' });
-                    handleNavigate('rent');
-                  }}>
-                    <CardContent className="p-8 text-center">
-                      <Home className="h-12 w-12 mx-auto mb-4 text-primary" />
-                      <h3 className="mb-2">For Rent</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Find your perfect rental property
-                      </p>
-                      <p className="text-2xl">{properties.filter(p => p.type === 'rent').length}+ Properties</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
-                    setSearchFilters({ ...searchFilters, type: 'sale' });
-                    handleNavigate('sale');
-                  }}>
-                    <CardContent className="p-8 text-center">
-                      <TrendingUp className="h-12 w-12 mx-auto mb-4 text-primary" />
-                      <h3 className="mb-2">For Sale</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Invest in your dream property
-                      </p>
-                      <p className="text-2xl">{properties.filter(p => p.type === 'sale').length}+ Properties</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
-                    handleNavigate('land');
-                  }}>
-                    <CardContent className="p-8 text-center">
-                      <Building2 className="h-12 w-12 mx-auto mb-4 text-primary" />
-                      <h3 className="mb-2">Land</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Premium land for development
-                      </p>
-                      <p className="text-2xl">{properties.filter(p => p.category === 'land').length}+ Plots</p>
-                    </CardContent>
-                  </Card>
-                </div>
               </div>
             </div>
           </>

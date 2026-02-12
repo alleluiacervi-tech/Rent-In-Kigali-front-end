@@ -17,19 +17,6 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
     return `${price.toLocaleString()} RWF`;
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'available':
-        return 'bg-accent text-accent-foreground';
-      case 'rented':
-        return 'bg-orange-500 text-white';
-      case 'sold':
-        return 'bg-muted text-muted-foreground';
-      default:
-        return 'bg-muted text-muted-foreground';
-    }
-  };
-
   return (
     <div className="bg-card border border-border/70 rounded-2xl overflow-hidden shadow-sm transition-shadow hover:shadow-md">
       <div className="relative h-64 overflow-hidden bg-muted">
@@ -41,9 +28,6 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
 
         <div className="absolute top-4 left-4 z-10">
           <div className="flex flex-wrap gap-2">
-            <Badge className={`${getStatusColor(property.status)} badge-glow`}>
-              {property.status === 'available' ? 'Available' : property.status === 'rented' ? 'Rented' : 'Sold'}
-            </Badge>
             <Badge className="bg-primary text-primary-foreground">
               {property.type === 'rent' ? 'For Rent' : 'For Sale'}
             </Badge>
