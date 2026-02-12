@@ -79,7 +79,7 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
             {property.agent ? (
               <>
                 <div className="font-medium truncate">{property.agent.name}</div>
-                <div className="text-xs text-muted-foreground">{property.agent.phone}</div>
+                <div className="text-xs text-muted-foreground break-words">{property.agent.phone}</div>
               </>
             ) : (
               <div className="text-xs text-muted-foreground uppercase tracking-[0.16em]">Verified Listing</div>
@@ -95,7 +95,7 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
           >
             View Details
           </Button>
-          </div>
+        </div>
       </div>
     </div>
   );
