@@ -53,7 +53,7 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
 
         {/* Specs */}
         {property.category !== 'land' ? (
-          <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1.5">
               <Bed className="h-4 w-4" />
               <span>{property.bedrooms} Beds</span>
@@ -75,13 +75,14 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
         )}
 
         {property.agent && (
-          <div className="flex items-center justify-between pt-4 border-t border-border/60">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-border/60">
             <div className="text-sm">
               <div className="font-medium">{property.agent.name}</div>
               <div className="text-xs text-muted-foreground">{property.agent.phone}</div>
             </div>
             <Button 
               size="sm" 
+              className="w-full sm:w-auto"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetails(property.id);

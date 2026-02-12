@@ -251,12 +251,16 @@ export default function App() {
 
             {/* Featured Properties */}
             <div className="container mx-auto px-4 py-16">
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
                 <div>
                   <h2 className="mb-2">Featured Properties</h2>
                   <p className="text-muted-foreground">Verified listings ready for viewing</p>
                 </div>
-                <Button onClick={() => handleNavigate('properties')} variant="outline">
+                <Button
+                  onClick={() => handleNavigate('properties')}
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
                   View All Properties
                 </Button>
               </div>

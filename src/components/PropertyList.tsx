@@ -3,9 +3,8 @@ import { Property } from '../types';
 import { PropertyCardPremium } from './PropertyCardPremium';
 import { PropertyFilters } from './PropertyFilters';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { Search, SlidersHorizontal, LayoutGrid, List } from 'lucide-react';
+import { LayoutGrid, List } from 'lucide-react';
 
 interface PropertyListProps {
   properties: Property[];
@@ -71,15 +70,16 @@ export function PropertyList({ properties, title, onViewDetails, showFilters = t
           <>
             <PropertyFilters onSearch={handleFilterChange} />
             
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-6">
               <p className="text-sm text-muted-foreground">
                 Showing {filteredProperties.length} of {properties.length} properties
               </p>
-              <div className="flex items-center gap-3">
-                <div className="flex gap-1 border border-border rounded-lg p-1">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="flex w-full sm:w-auto gap-1 border border-border rounded-lg p-1">
                   <Button
                     variant={viewMode === 'grid' ? 'default' : 'ghost'}
                     size="sm"
+                    className="flex-1 sm:flex-none"
                     onClick={() => setViewMode('grid')}
                   >
                     <LayoutGrid className="h-4 w-4" />
@@ -87,13 +87,14 @@ export function PropertyList({ properties, title, onViewDetails, showFilters = t
                   <Button
                     variant={viewMode === 'list' ? 'default' : 'ghost'}
                     size="sm"
+                    className="flex-1 sm:flex-none"
                     onClick={() => setViewMode('list')}
                   >
                     <List className="h-4 w-4" />
                   </Button>
                 </div>
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-full sm:w-48">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>

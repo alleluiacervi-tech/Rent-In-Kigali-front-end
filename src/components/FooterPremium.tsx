@@ -22,15 +22,15 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm">
+              <div className="flex items-start gap-3 text-sm">
                 <div className="p-2 bg-primary/10 rounded-md">
                   <MapPin className="h-4 w-4 text-primary" />
                 </div>
-                <span className="text-muted-foreground">
+                <span className="text-muted-foreground break-words">
                   8KN 4Avenue, Kigali, Rwanda 250
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-sm">
+              <div className="flex items-start gap-3 text-sm">
                 <div className="p-2 bg-primary/10 rounded-md">
                   <Phone className="h-4 w-4 text-primary" />
                 </div>
@@ -75,9 +75,9 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
 
       <div className="border-t border-border">
         <div className="container mx-auto px-4 py-5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <span>© {currentYear} Rent in Kigali. All rights reserved.</span>
-            <div className="flex items-center gap-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground text-center md:text-left">
+            <span className="break-words">© {currentYear} Rent in Kigali. All rights reserved.</span>
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-5 gap-y-2">
               <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>

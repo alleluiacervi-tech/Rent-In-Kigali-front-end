@@ -15,7 +15,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-96 bg-muted flex items-center justify-center rounded-lg">
+      <div className="w-full h-64 sm:h-80 md:h-96 bg-muted flex items-center justify-center rounded-lg">
         <p className="text-muted-foreground">No images available</p>
       </div>
     );
@@ -31,7 +31,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
   return (
     <>
-      <div className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden bg-black group">
+      <div className="relative w-full h-72 sm:h-96 md:h-[500px] rounded-lg overflow-hidden bg-black group">
         {/* Main Image */}
         <AnimatePresence mode="wait">
           <motion.img
@@ -52,7 +52,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
               onClick={prevImage}
             >
               <ChevronLeft className="h-6 w-6" />
@@ -60,7 +60,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
               onClick={nextImage}
             >
               <ChevronRight className="h-6 w-6" />
@@ -91,7 +91,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+              className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                 index === currentIndex
                   ? 'border-primary ring-2 ring-primary/20'
                   : 'border-transparent hover:border-primary/50'
@@ -109,7 +109,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
       {/* Fullscreen Dialog */}
       <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
-        <DialogContent className="max-w-7xl h-[90vh] p-0">
+        <DialogContent className="w-[calc(100vw-1rem)] max-w-7xl h-[90vh] p-0">
           <div className="relative w-full h-full bg-black">
             <AnimatePresence mode="wait">
               <motion.img
@@ -133,7 +133,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
                   onClick={prevImage}
                 >
-                  <ChevronLeft className="h-8 w-8" />
+                  <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
                 </Button>
                 <Button
                   variant="ghost"
@@ -141,7 +141,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
                   onClick={nextImage}
                 >
-                  <ChevronRight className="h-8 w-8" />
+                  <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
                 </Button>
               </>
             )}
