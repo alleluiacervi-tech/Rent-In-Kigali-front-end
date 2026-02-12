@@ -1,7 +1,5 @@
 import { Logo } from './Logo';
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, MessageCircle } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
 interface FooterPremiumProps {
   isDark?: boolean;
@@ -11,22 +9,21 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-muted/60 border-t border-border">
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
+    <footer className="bg-muted/40 border-t border-border">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div>
             <Logo variant={isDark ? 'default' : 'default'} size="md" className="mb-6" />
-            <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
-              Rent in Kigali is a premium real estate platform curating exceptional homes, 
-              verified listings, and concierge-level guidance for every buyer and renter.
+            <p className="text-muted-foreground max-w-sm leading-relaxed">
+              Rent in Kigali helps clients find verified rental, sale, and land listings across Kigali.
             </p>
-            
-            {/* Contact Info */}
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm">
-                <div className="p-2 bg-primary/10 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-md">
                   <MapPin className="h-4 w-4 text-primary" />
                 </div>
                 <span className="text-muted-foreground">
@@ -34,7 +31,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
                 </span>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <div className="p-2 bg-primary/10 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-md">
                   <Phone className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex flex-col">
@@ -47,7 +44,7 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
                 </div>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <div className="p-2 bg-primary/10 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-md">
                   <Mail className="h-4 w-4 text-primary" />
                 </div>
                 <a href="mailto:info@rentinkigali.com" className="text-muted-foreground hover:text-primary transition-colors">
@@ -57,103 +54,39 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-6">Explore</h4>
+            <h4 className="font-semibold mb-4">Quick Access</h4>
             <ul className="space-y-3">
-              {['Browse Listings', 'For Rent', 'For Sale', 'Land', 'About Us'].map((link) => (
+              {['Browse Listings', 'For Rent', 'For Sale', 'Land Listings', 'About Us'].map((link) => (
                 <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {link}
-                  </a>
+                  <span className="text-sm text-muted-foreground">{link}</span>
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {['Market Insights', 'Neighborhood Guides', 'Investment Tips', 'FAQs', 'Support'].map((link) => (
-                <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-semibold mb-6">Stay Updated</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              Get new listings, pricing insights, and Kigali market updates.
-            </p>
-            <div className="space-y-3">
-              <Input 
-                type="email" 
-                placeholder="Email address" 
-                className="bg-background"
-              />
-              <Button className="w-full">
-                Subscribe
-              </Button>
-            </div>
+            <a
+              href="https://wa.me/250785514692"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-5 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Chat on WhatsApp
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Social & Legal */}
       <div className="border-t border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Social Links */}
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground mr-2">Follow us:</span>
-              {[
-                { icon: Facebook, href: '#' },
-                { icon: Twitter, href: '#' },
-                { icon: Instagram, href: '#' },
-                { icon: Linkedin, href: '#' },
-                { icon: MessageCircle, href: 'https://wa.me/250785514692' }
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-
-            {/* Legal Links */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+        <div className="container mx-auto px-4 py-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <span>© {currentYear} Rent in Kigali. All rights reserved.</span>
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
+            <div className="flex items-center gap-5">
+              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
+            </div>
           </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tagline */}
-      <div className="border-t border-border bg-primary/5">
-        <div className="container mx-auto px-4 py-4">
-          <p className="text-center text-sm text-muted-foreground">
-            <span className="font-medium text-primary">Trust. Discretion. Excellence.</span> Kigali’s premium real estate platform for refined living.
-          </p>
         </div>
       </div>
     </footer>
