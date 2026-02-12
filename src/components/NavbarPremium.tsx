@@ -30,7 +30,6 @@ export function NavbarPremium({
     { id: 'properties', label: 'Browse Listings' },
     { id: 'rent', label: 'Rent' },
     { id: 'sale', label: 'Buy' },
-    { id: 'land', label: 'Land' },
     { id: 'about', label: 'About' },
   ];
 
@@ -65,14 +64,6 @@ export function NavbarPremium({
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
-
-            <Button
-              variant="ghost"
-              className="text-foreground/70 hover:text-foreground"
-              asChild
-            >
-              <a href="mailto:info@rentinkigali.com">Contact Agent</a>
-            </Button>
 
             {!isAuthenticated ? (
               <>
@@ -150,25 +141,6 @@ export function NavbarPremium({
               ))}
               
               <div className="border-t border-border/50 my-4"></div>
-
-              <Button 
-                variant="outline"
-                className="justify-start"
-                onClick={() => {
-                  onNavigate('properties');
-                  setMobileMenuOpen(false);
-                }}
-              >
-                Browse Listings
-              </Button>
-
-              <Button 
-                variant="ghost"
-                className="justify-start"
-                asChild
-              >
-                <a href="mailto:info@rentinkigali.com">Contact Agent</a>
-              </Button>
 
               {!isAuthenticated ? (
                 <>
