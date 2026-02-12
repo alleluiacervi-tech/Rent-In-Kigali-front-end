@@ -143,7 +143,7 @@ export function AdminPropertyManagement({
                         <p className="text-sm break-words">{formatPrice(property.price)}</p>
                       </div>
                     </div>
-                    <div className="mt-3 grid grid-cols-3 gap-2">
+                    <div className="mt-3 grid grid-cols-2 gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -165,11 +165,11 @@ export function AdminPropertyManagement({
                       <Button
                         variant="outline"
                         size="sm"
-                        className="gap-1 text-xs text-destructive hover:text-destructive"
+                        className="col-span-2 gap-1 text-xs text-destructive hover:text-destructive"
                         onClick={() => handleDeleteClick(property.id)}
                       >
                         <Trash2 className="h-3.5 w-3.5" />
-                        Delete
+                        Delete Property
                       </Button>
                     </div>
                   </div>
@@ -229,6 +229,7 @@ export function AdminPropertyManagement({
                             <Button
                               variant="ghost"
                               size="sm"
+                              aria-label="View property"
                               onClick={() => onViewProperty(property.id)}
                             >
                               <Eye className="h-4 w-4" />
@@ -236,6 +237,7 @@ export function AdminPropertyManagement({
                             <Button
                               variant="ghost"
                               size="sm"
+                              aria-label="Edit property"
                               onClick={() => onEditProperty(property.id)}
                             >
                               <Edit className="h-4 w-4" />
@@ -243,6 +245,7 @@ export function AdminPropertyManagement({
                             <Button
                               variant="ghost"
                               size="sm"
+                              aria-label="Delete property"
                               onClick={() => handleDeleteClick(property.id)}
                               className="text-destructive hover:text-destructive"
                             >
