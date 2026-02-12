@@ -84,7 +84,7 @@ export function LandSalesPage({ properties, onViewDetails }: LandSalesPageProps)
               <span className="text-primary">Land Sales Division</span>
             </div>
             <h1 className="mb-4">Premium Land for Sale in Kigali</h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8">
               Invest in prime real estate land across Kigali's most sought-after locations. 
               Whether you're looking for residential, commercial, or agricultural land, we have the perfect plot for your development needs.
             </p>
