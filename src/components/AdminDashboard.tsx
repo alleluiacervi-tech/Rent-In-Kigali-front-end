@@ -1,7 +1,6 @@
 import { DashboardStats } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Home, TrendingUp, Users, MessageSquare, DollarSign, CheckCircle, XCircle } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Home, TrendingUp, Users, MessageSquare, CheckCircle } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface AdminDashboardProps {
@@ -23,12 +22,12 @@ export function AdminDashboard({ stats, onNavigate }: AdminDashboardProps) {
       {/* Header */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="mb-1">Admin Dashboard</h1>
               <p className="text-muted-foreground">Welcome back! Here's what's happening with your properties.</p>
             </div>
-            <Button onClick={() => onNavigate('admin-properties')}>
+            <Button onClick={() => onNavigate('admin-properties')} className="w-full md:w-auto">
               Manage Properties
             </Button>
           </div>

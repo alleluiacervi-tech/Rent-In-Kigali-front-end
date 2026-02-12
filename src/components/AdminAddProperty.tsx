@@ -282,7 +282,7 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
               <CardTitle>Features & Amenities</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   value={newFeature}
                   onChange={(e) => setNewFeature(e.target.value)}
@@ -290,7 +290,7 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
                   className="bg-input-background"
                 />
-                <Button type="button" onClick={addFeature} variant="outline">
+                <Button type="button" onClick={addFeature} variant="outline" className="w-full sm:w-auto">
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
@@ -322,7 +322,7 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
               <CardTitle>Property Images</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
@@ -330,7 +330,7 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
                   className="bg-input-background"
                 />
-                <Button type="button" onClick={addImage} variant="outline">
+                <Button type="button" onClick={addImage} variant="outline" className="w-full sm:w-auto">
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
@@ -358,12 +358,17 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
             </CardContent>
           </Card>
 
-          <div className="flex gap-4">
-            <Button type="submit" className="gap-2">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button type="submit" className="gap-2 w-full sm:w-auto">
               <Save className="h-4 w-4" />
               {property ? 'Update Property' : 'Create Property'}
             </Button>
-            <Button type="button" variant="outline" onClick={() => onNavigate('admin-properties')}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onNavigate('admin-properties')}
+              className="w-full sm:w-auto"
+            >
               Cancel
             </Button>
           </div>

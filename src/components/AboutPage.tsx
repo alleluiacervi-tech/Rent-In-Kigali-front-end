@@ -6,19 +6,19 @@ export function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary via-blue-600 to-blue-700 text-white py-20">
+      <div className="bg-gradient-to-br from-primary via-blue-600 to-blue-700 text-white py-14 sm:py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="mb-4 text-white">Real Estate Service</h1>
-          <div className="text-xl text-blue-100 max-w-2xl mx-auto space-y-3">
-            <div className="flex items-center justify-center gap-3">
+          <div className="text-base sm:text-xl text-blue-100 max-w-2xl mx-auto space-y-3">
+            <div className="flex items-start sm:items-center justify-start sm:justify-center gap-3 text-left sm:text-center">
               <Home className="h-6 w-6" />
               <p>Getting real about real estate</p>
             </div>
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-start sm:items-center justify-start sm:justify-center gap-3 text-left sm:text-center">
               <Briefcase className="h-6 w-6" />
               <p>We are a professional real estate agency in Rwanda</p>
             </div>
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-start sm:items-center justify-start sm:justify-center gap-3 text-left sm:text-center">
               <CheckCircle className="h-6 w-6" />
               <p>Just here for you</p>
             </div>
@@ -133,7 +133,7 @@ export function AboutPage() {
           </div>
 
           {/* Our Story */}
-          <div className="bg-muted rounded-lg p-8 mb-16">
+          <div className="bg-muted rounded-lg p-5 sm:p-8 mb-16">
             <h2 className="mb-4">Our Story</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>

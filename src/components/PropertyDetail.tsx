@@ -53,12 +53,12 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
       {/* Header */}
       <div className="bg-card border-b border-border">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Button variant="ghost" onClick={onBack} className="gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Properties
             </Button>
-            <div className="flex gap-2">
+            <div className="flex gap-2 sm:self-auto self-end">
               <Button variant="outline" size="icon" onClick={handleFavorite}>
                 <Heart className={`h-5 w-5 ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
               </Button>
@@ -70,7 +70,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-6 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
@@ -102,7 +102,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
             {/* Property Details */}
             <Card className="mb-6 card-outline">
               <CardHeader>
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <CardTitle className="mb-2">{property.title}</CardTitle>
                     <div className="flex items-center gap-2 text-muted-foreground">
@@ -110,7 +110,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                       <span>{property.location}, {property.district}</span>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-left sm:text-right">
                     <p className="text-sm text-muted-foreground mb-1">
                       {property.type === 'rent' ? 'Monthly Rent' : 'Price'}
                     </p>
@@ -119,7 +119,11 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-muted/70 rounded-2xl">
+                <div
+                  className={`grid gap-4 mb-6 p-4 bg-muted/70 rounded-2xl ${
+                    property.category === 'land' ? 'grid-cols-1' : 'grid-cols-2 sm:grid-cols-3'
+                  }`}
+                >
                   {property.category !== 'land' && (
                     <>
                       <div className="text-center">
@@ -154,7 +158,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
 
                 <div>
                   <h4 className="mb-3">Features & Amenities</h4>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {property.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <Check className="h-4 w-4 text-emerald-500" />
@@ -168,7 +172,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
 
                 <div>
                   <h4 className="mb-3">Property Information</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">Type</p>
                       <p className="capitalize">{property.type}</p>
@@ -199,7 +203,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                 <CardTitle>Location & Neighborhood</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="rounded-2xl border border-border/60 bg-muted/60 p-6 flex items-center justify-between">
+                <div className="rounded-2xl border border-border/60 bg-muted/60 p-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-2">Map Preview</p>
                     <p className="text-lg font-medium">{property.location}, {property.district}</p>
@@ -217,12 +221,12 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
           <div className="lg:col-span-1">
             {/* Contact Agent */}
             {property.agent && (
-              <Card className="mb-6 sticky top-20 card-outline">
+              <Card className="mb-6 lg:sticky lg:top-20 card-outline">
                 <CardHeader>
                   <CardTitle>Contact Agent</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-start gap-3 mb-4">
                     <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                       <span className="text-xl">{property.agent.name.charAt(0)}</span>
                     </div>

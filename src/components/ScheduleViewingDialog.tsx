@@ -50,7 +50,7 @@ export function ScheduleViewingDialog({ propertyTitle, open, onOpenChange }: Sch
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="w-[calc(100vw-1.5rem)] sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Schedule a Viewing</DialogTitle>
           <p className="text-sm text-muted-foreground mt-2">{propertyTitle}</p>
@@ -103,7 +103,7 @@ export function ScheduleViewingDialog({ propertyTitle, open, onOpenChange }: Sch
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="date">Preferred Date *</Label>
               <div className="relative mt-2">
@@ -155,7 +155,7 @@ export function ScheduleViewingDialog({ propertyTitle, open, onOpenChange }: Sch
             />
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1">
               Cancel
             </Button>

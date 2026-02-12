@@ -67,7 +67,7 @@ export function AdminPropertyManagement({
       {/* Header */}
       <div className="bg-white border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <Button 
                 variant="ghost" 
@@ -80,7 +80,7 @@ export function AdminPropertyManagement({
               <h1 className="mb-1">Property Management</h1>
               <p className="text-muted-foreground">Manage all your properties in one place</p>
             </div>
-            <Button onClick={() => onNavigate('admin-add-property')} className="gap-2">
+            <Button onClick={() => onNavigate('admin-add-property')} className="gap-2 w-full md:w-auto">
               <Plus className="h-4 w-4" />
               Add New Property
             </Button>
@@ -91,9 +91,9 @@ export function AdminPropertyManagement({
       <div className="container mx-auto px-4 py-8">
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <CardTitle>All Properties ({filteredProperties.length})</CardTitle>
-              <div className="w-72">
+              <div className="w-full md:w-72">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -107,8 +107,8 @@ export function AdminPropertyManagement({
             </div>
           </CardHeader>
           <CardContent>
-            <div className="rounded-md border">
-              <Table>
+            <div className="rounded-md border overflow-x-auto">
+              <Table className="min-w-[760px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>Property</TableHead>
