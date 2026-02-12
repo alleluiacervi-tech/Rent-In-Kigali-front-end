@@ -1,7 +1,6 @@
 import { Property } from '../types';
 import { MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import { Button } from './ui/button';
-import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface PropertyCardPremiumProps {
@@ -19,32 +18,12 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
 
   return (
     <div className="bg-card border border-border/70 rounded-2xl overflow-hidden shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative h-64 overflow-hidden bg-muted">
+      <div className="h-64 overflow-hidden bg-muted">
         <ImageWithFallback
           src={property.images[0]}
           alt={property.title}
           className="w-full h-full object-cover"
         />
-
-        <div className="absolute top-4 left-4 z-10">
-          <div className="flex flex-wrap gap-2">
-            <Badge className="bg-primary text-primary-foreground">
-              {property.type === 'rent' ? 'For Rent' : 'For Sale'}
-            </Badge>
-          </div>
-        </div>
-
-        <div className="absolute bottom-4 left-4 z-10">
-          <div className="bg-white/90 dark:bg-card px-4 py-2 rounded-xl shadow-lg backdrop-blur-sm">
-            <div className="text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground mb-1">
-              {property.type === 'rent' ? 'Monthly rent' : 'Sale price'}
-            </div>
-            <div className="text-xl font-semibold text-foreground">
-              {formatPrice(property.price)}
-              {property.type === 'rent' && <span className="text-sm font-normal text-muted-foreground">/mo</span>}
-            </div>
-          </div>
-        </div>
       </div>
 
       <div 
@@ -61,6 +40,16 @@ export function PropertyCardPremium({ property, onViewDetails }: PropertyCardPre
         <h3 className="font-semibold text-lg mb-3 line-clamp-2">
           {property.title}
         </h3>
+
+        <div className="mb-4">
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">
+            {property.type === 'rent' ? 'Monthly rent' : 'Sale price'}
+          </p>
+          <p className="text-xl font-semibold text-foreground">
+            {formatPrice(property.price)}
+            {property.type === 'rent' && <span className="text-sm font-normal text-muted-foreground">/mo</span>}
+          </p>
+        </div>
 
         {/* Specs */}
         {property.category !== 'land' ? (

@@ -55,14 +55,10 @@ export function FooterPremium({ isDark = false }: FooterPremiumProps) {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Access</h4>
-            <ul className="space-y-3">
-              {['Browse Listings', 'For Rent', 'For Sale', 'Land Listings', 'About Us'].map((link) => (
-                <li key={link}>
-                  <span className="text-sm text-muted-foreground">{link}</span>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-semibold mb-4">Support</h4>
+            <p className="text-sm text-muted-foreground">
+              Need help with a listing or viewing? Reach our team directly on WhatsApp.
+            </p>
 
             <a
               href="https://wa.me/250785514692"

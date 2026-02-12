@@ -34,7 +34,7 @@ export function NavbarPremium({
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-border/70 bg-background">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <button 
@@ -121,7 +121,7 @@ export function NavbarPremium({
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-border/50 animate-slide-up">
+          <div className="lg:hidden py-6 border-t border-border/50">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <button

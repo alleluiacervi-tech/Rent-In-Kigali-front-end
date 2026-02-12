@@ -373,7 +373,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Toaster position="top-right" richColors />
+      <Toaster position="top-right" />
       
       {currentView !== 'login' && currentView !== 'register' && (
         <NavbarPremium
