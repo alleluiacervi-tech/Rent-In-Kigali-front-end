@@ -161,7 +161,7 @@ export function AdminDashboard({ stats, onNavigate }: AdminDashboardProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
               <Button 
                 variant="outline" 
-                className="h-auto py-6 flex-col gap-2 text-center whitespace-normal"
+                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
                 onClick={() => onNavigate('admin-properties')}
               >
                 <Home className="h-6 w-6" />
@@ -169,7 +169,7 @@ export function AdminDashboard({ stats, onNavigate }: AdminDashboardProps) {
               </Button>
               <Button 
                 variant="outline" 
-                className="h-auto py-6 flex-col gap-2 text-center whitespace-normal"
+                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
                 onClick={() => onNavigate('admin-add-property')}
               >
                 <TrendingUp className="h-6 w-6" />
@@ -177,7 +177,7 @@ export function AdminDashboard({ stats, onNavigate }: AdminDashboardProps) {
               </Button>
               <Button 
                 variant="outline" 
-                className="h-auto py-6 flex-col gap-2 text-center whitespace-normal"
+                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
               >
                 <Users className="h-6 w-6" />
                 <span>View Users</span>

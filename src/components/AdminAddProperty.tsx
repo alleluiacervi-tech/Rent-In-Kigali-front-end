@@ -99,7 +99,7 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 py-6 sm:py-8 max-w-4xl">
         <form onSubmit={handleSubmit}>
           <Card className="mb-6">
             <CardHeader>
@@ -287,11 +287,12 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
                   value={newFeature}
                   onChange={(e) => setNewFeature(e.target.value)}
                   placeholder="Add a feature (e.g., Parking, Security, etc.)"
-                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
+                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
                   className="bg-input-background"
                 />
-                <Button type="button" onClick={addFeature} variant="outline" className="w-full sm:w-auto">
+                <Button type="button" onClick={addFeature} variant="outline" className="w-full sm:w-auto gap-1">
                   <Plus className="h-4 w-4" />
+                  Add
                 </Button>
               </div>
 
@@ -300,9 +301,9 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
                   {formData.features.map((feature, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 bg-secondary text-secondary-foreground px-3 py-1 rounded-md"
+                      className="flex items-center gap-2 bg-secondary text-secondary-foreground px-3 py-1 rounded-md max-w-full"
                     >
-                      <span>{feature}</span>
+                      <span className="break-words">{feature}</span>
                       <button
                         type="button"
                         onClick={() => removeFeature(index)}
@@ -327,16 +328,17 @@ export function AdminAddProperty({ property, onNavigate, onSave }: AdminAddPrope
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="Enter image URL"
-                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
+                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
                   className="bg-input-background"
                 />
-                <Button type="button" onClick={addImage} variant="outline" className="w-full sm:w-auto">
+                <Button type="button" onClick={addImage} variant="outline" className="w-full sm:w-auto gap-1">
                   <Plus className="h-4 w-4" />
+                  Add
                 </Button>
               </div>
 
               {formData.images && formData.images.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                   {formData.images.map((image, index) => (
                     <div key={index} className="relative group">
                       <img
