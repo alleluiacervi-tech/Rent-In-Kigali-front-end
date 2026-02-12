@@ -132,6 +132,9 @@ export function AdminPropertyManagement({
                       <div className="min-w-0 flex-1 space-y-1">
                         <p className="line-clamp-2">{property.title}</p>
                         <p className="text-sm text-muted-foreground line-clamp-1">{property.location}</p>
+                        <p className="text-xs text-muted-foreground capitalize line-clamp-1">
+                          {property.category} • {property.district}
+                        </p>
                         <div className="flex flex-wrap items-center gap-2">
                           <Badge variant="outline" className="capitalize">
                             {property.type}

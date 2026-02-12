@@ -158,29 +158,29 @@ export function AdminDashboard({ stats, onNavigate }: AdminDashboardProps) {
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Button 
                 variant="outline" 
-                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
+                className="h-auto min-h-32 sm:min-h-36 py-5 sm:py-6 flex-col gap-2 text-center whitespace-normal justify-center"
                 onClick={() => onNavigate('admin-properties')}
               >
                 <Home className="h-6 w-6" />
-                <span>Manage Properties</span>
+                <span className="text-sm">Manage Properties</span>
               </Button>
               <Button 
                 variant="outline" 
-                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
+                className="h-auto min-h-32 sm:min-h-36 py-5 sm:py-6 flex-col gap-2 text-center whitespace-normal justify-center"
                 onClick={() => onNavigate('admin-add-property')}
               >
                 <TrendingUp className="h-6 w-6" />
-                <span>Add New Property</span>
+                <span className="text-sm">Add New Property</span>
               </Button>
               <Button 
                 variant="outline" 
-                className="h-auto min-h-36 py-6 flex-col gap-2 text-center whitespace-normal justify-center"
+                className="h-auto min-h-32 sm:min-h-36 py-5 sm:py-6 flex-col gap-2 text-center whitespace-normal justify-center"
               >
                 <Users className="h-6 w-6" />
-                <span>View Users</span>
+                <span className="text-sm">View Users</span>
               </Button>
             </div>
           </CardContent>
