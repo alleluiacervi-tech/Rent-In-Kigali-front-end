@@ -3,7 +3,6 @@ import { Search, MapPin } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface HeroPremiumProps {
   onSearch: (filters: { 
@@ -45,27 +44,18 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
   };
 
   return (
-    <div className="relative min-h-[76vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20 z-10" />
-        <ImageWithFallback
-          src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80"
-          alt="Modern home in Kigali"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="relative z-20 container mx-auto px-4 py-24">
+    <section className="bg-gradient-to-b from-muted/40 to-background border-b border-border/60">
+      <div className="container mx-auto px-4 pt-32 pb-16">
         <div className="max-w-4xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-5 leading-tight text-white">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-4 leading-tight">
             Find your next home in Kigali
           </h1>
 
-          <p className="text-base md:text-lg text-white/85 mb-8 max-w-2xl">
-            Browse verified listings for rent, sale, and land in one focused search.
+          <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl">
+            Browse verified listings for rent, sale, and land with one focused search.
           </p>
 
-          <div className="bg-card/95 border border-white/30 shadow-lg rounded-2xl p-4 md:p-5 max-w-5xl backdrop-blur">
+          <div className="bg-card border border-border rounded-xl p-4 md:p-5 max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
               <div className="lg:col-span-2 relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
@@ -74,14 +64,14 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
                   placeholder="Location or property name..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-11 h-12 bg-muted/70"
+                  className="pl-11 h-12"
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
 
               <div>
                 <Select value={propertyType} onValueChange={setPropertyType}>
-                  <SelectTrigger className="h-12 bg-muted/70">
+                  <SelectTrigger className="h-12">
                     <SelectValue placeholder="Listing type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -94,7 +84,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
 
               <div>
                 <Select value={priceRange} onValueChange={setPriceRange}>
-                  <SelectTrigger className="h-12 bg-muted/70">
+                  <SelectTrigger className="h-12">
                     <SelectValue placeholder="Price range" />
                   </SelectTrigger>
                   <SelectContent>
@@ -109,7 +99,7 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
 
               <div>
                 <Select value={district} onValueChange={setDistrict}>
-                  <SelectTrigger className="h-12 bg-muted/70">
+                  <SelectTrigger className="h-12">
                     <SelectValue placeholder="District" />
                   </SelectTrigger>
                   <SelectContent>
@@ -131,6 +121,6 @@ export function HeroPremium({ onSearch, onNavigate }: HeroPremiumProps) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
