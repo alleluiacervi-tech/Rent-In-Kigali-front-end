@@ -128,7 +128,7 @@ export function PropertyList({ properties, title, onViewDetails, showFilters = t
           </div>
         ) : (
           <div className={viewMode === 'grid' 
-            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch' 
             : 'flex flex-col gap-6'
           }>
             {filteredProperties.map(property => (
