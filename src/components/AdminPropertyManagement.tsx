@@ -44,6 +44,14 @@ export function AdminPropertyManagement({
     }).format(price);
   };
 
+  const getStatusBadgeClass = (status: Property['status']) => {
+    if (status === 'available') return 'bg-green-500 text-white hover:bg-green-600';
+    if (status === 'rented') return 'bg-yellow-500 text-white hover:bg-yellow-600';
+    return 'bg-blue-500 text-white hover:bg-blue-600';
+  };
+
+  const formatStatus = (status: string) => status.charAt(0).toUpperCase() + status.slice(1);
+
   const filteredProperties = properties.filter(property =>
     property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     property.location.toLowerCase().includes(searchQuery.toLowerCase())
@@ -88,7 +96,7 @@ export function AdminPropertyManagement({
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         <Card>
           <CardHeader>
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between admin-management-header">
@@ -107,7 +115,69 @@ export function AdminPropertyManagement({
             </div>
           </CardHeader>
           <CardContent>
-            <div className="rounded-md border admin-table-scroll">
+            <div className="space-y-3 md:hidden">
+              {filteredProperties.length === 0 ? (
+                <div className="rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
+                  No properties found
+                </div>
+              ) : (
+                filteredProperties.map((property) => (
+                  <div key={property.id} className="rounded-lg border p-3">
+                    <div className="flex gap-3">
+                      <img
+                        src={property.images[0]}
+                        alt={property.title}
+                        className="h-20 w-24 shrink-0 rounded-md object-cover"
+                      />
+                      <div className="min-w-0 flex-1 space-y-1">
+                        <p className="line-clamp-2">{property.title}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-1">{property.location}</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge variant="outline" className="capitalize">
+                            {property.type}
+                          </Badge>
+                          <Badge className={getStatusBadgeClass(property.status)}>
+                            {formatStatus(property.status)}
+                          </Badge>
+                        </div>
+                        <p className="text-sm break-words">{formatPrice(property.price)}</p>
+                      </div>
+                    </div>
+                    <div className="mt-3 grid grid-cols-3 gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-1 text-xs"
+                        onClick={() => onViewProperty(property.id)}
+                      >
+                        <Eye className="h-3.5 w-3.5" />
+                        View
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-1 text-xs"
+                        onClick={() => onEditProperty(property.id)}
+                      >
+                        <Edit className="h-3.5 w-3.5" />
+                        Edit
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-1 text-xs text-destructive hover:text-destructive"
+                        onClick={() => handleDeleteClick(property.id)}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="hidden md:block rounded-md border admin-table-scroll">
               <Table className="min-w-[760px]">
                 <TableHeader>
                   <TableRow>
@@ -150,16 +220,8 @@ export function AdminPropertyManagement({
                         </TableCell>
                         <TableCell>{formatPrice(property.price)}</TableCell>
                         <TableCell>
-                          <Badge
-                            className={
-                              property.status === 'available'
-                                ? 'bg-green-500 text-white hover:bg-green-600'
-                                : property.status === 'rented'
-                                ? 'bg-yellow-500 text-white hover:bg-yellow-600'
-                                : 'bg-blue-500 text-white hover:bg-blue-600'
-                            }
-                          >
-                            {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
+                          <Badge className={getStatusBadgeClass(property.status)}>
+                            {formatStatus(property.status)}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
